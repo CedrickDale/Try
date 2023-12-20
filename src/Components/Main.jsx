@@ -1,47 +1,50 @@
-import React, { useEffect, useState } from "react";
+// App.js
+import React, { useState } from 'react';
 
-const Main = () => {
-  const [show, setShow] = useState(false);
-  const [item, setItem] = useState([]);
 
-  const myShow = function () {
-    setShow((prev) => !prev);
+function Main() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    
+    console.log('Username:', username);
+    console.log('Password:', password);
+    // Reset the form fields after processing
+    setUsername('');
+    setPassword('');
   };
 
-  useEffect(() => {
-    const getItem = async () => {
-      const url = "https://fakestoreapi.com/products?limit=5";
-      const items = await fetch(url);
-      const itemApi = await items.json();
-
-      setItem(itemApi);
-    };
-    getItem();
-  }, []);
-
-  console.log(item);
-
   return (
-    <div>
-      <main className="main-container">
-        <button onClick={myShow}>{show ? "Hide" : "Show"}</button>
-        {show && <p>Tsukiden</p>}
-
-        <div>{item.map((item, idx) => {
-        console.log(item.title)
-        return (
-            <div key={idx}>
-                <ul>{item.title}</ul>
-
-
-            </div>
-        )
-      })
-      }</div>
-      </main>
-      
+    
+    <div className="App">
+      <h1>Login Form</h1>
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label htmlFor="username">Email:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
-};
+}
 
 export default Main;

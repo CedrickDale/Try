@@ -2,13 +2,14 @@ import React from 'react'
 
 const Nav = () => {
   return (
-    <div>
-        <nav className='nav-container'>
-        <ul>Home</ul>
-        <ul>History</ul>
-        <ul>Faq</ul>
-      </nav>
-    </div>
+   <div className='NavbarContainer'>
+        
+  <ul><a href="#home">Home</a></ul>
+  <ul><a href="#news">News</a></ul>
+  <ul><a href="#contact">Contact</a></ul>
+  <ul><a href="#about">About</a></ul>
+</div>
+
   )
 }
 
